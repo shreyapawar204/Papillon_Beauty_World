@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation Collection - Papillon Beauty World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a2e;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Consistent Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 192, 203, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(147, 112, 219, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 60% 70%, rgba(255, 105, 180, 0.12) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            z-index: -1;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; filter: hue-rotate(0deg); }
+            50% { opacity: 0.9; filter: hue-rotate(20deg); }
+        }
+
+        /* Header Styling */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-section img { height: 50px; width: auto; border-radius: 50%; }
+        
+        .brand-name {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav a:hover { color: #667eea; }
+
+        /* Product Grid */
+        .product-container {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Glassmorphism Card Style */
+        .gallery {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .gallery:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .desc {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .desc h1 {
+            font-size: 20px;
+            color: #764ba2;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .desc p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+            min-height: 40px;
+        }
+
+        .price {
+            font-size: 22px;
+            color: #228B22;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .mrp {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .discount {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header { flex-direction: column; padding: 20px; }
+            .nav { margin-top: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo-section">
+            <img src="logo.jpg" alt="Logo">
+            <div class="brand-name">Papillon Beauty World</div>
+        </div>
+        <nav class="nav">
+            <a href="papillon.html">Home</a>
+            <a href="nextpage.html">About Us</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <div class="product-container">
+
+        <div class="gallery">
+            <img src="f1.jpg" alt="Lakme">
+            <div class="desc">
+                <h1>LAKME</h1>
+                <p>1% Hyaluronic foundation Aqua Ultra Light Gel with SPF</p>
+                <span class="price">Rs 423</span>
+                <span class="mrp">M.R.P: <del>Rs 399</del> <span class="discount">(15% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f2.jpg" alt="Fit Me">
+            <div class="desc">
+                <h1>FIT ME</h1>
+                <p>Hydration Boost Kit for 2X Glow Normal, Oily, Dry skin.</p>
+                <span class="price">Rs 899</span>
+                <span class="mrp">M.R.P: <del>Rs 499</del> <span class="discount">(10% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f3.jpg" alt="Super">
+            <div class="desc">
+                <h1>SUPER</h1>
+                <p>Skin Science Ultimate Vitamin C Facial foundation | 430mL</p>
+                <span class="price">Rs 1,000</span>
+                <span class="mrp">M.R.P: <del>Rs 2,096</del> <span class="discount">(41% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f4.jpg" alt="Faces">
+            <div class="desc">
+                <h1>FACESC</h1>
+                <p>Korean Retinol Anti Aging Night Cream with Hyaluronic Acid</p>
+                <span class="price">Rs 399</span>
+                <span class="mrp">M.R.P: <del>Rs 650</del> <span class="discount">(30% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f5.jpg" alt="Glam21">
+            <div class="desc">
+                <h1>GLAM21</h1>
+                <p>Foundation Retinol Anti Aging Night Cream with Vitamin C</p>
+                <span class="price">Rs 699</span>
+                <span class="mrp">M.R.P: <del>Rs 650</del> <span class="discount">(30% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f6.jpg" alt="MyGlamm">
+            <div class="desc">
+                <h1>MYGLAMM</h1>
+                <p>Face Wash Gentle Skin Cleanser for Dry to Normal Skin</p>
+                <span class="price">Rs 400</span>
+                <span class="mrp">M.R.P: <del>Rs 333</del> <span class="discount">(8% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f7.jpg" alt="Lasting">
+            <div class="desc">
+                <h1>LASTING</h1>
+                <p>Revitalift Serum, Hydrating and Plumping, 15ml</p>
+                <span class="price">Rs 399</span>
+                <span class="mrp">M.R.P: <del>Rs 529</del> <span class="discount">(19% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f8.jpg" alt="Sugar Pop">
+            <div class="desc">
+                <h1>SUGAR POP</h1>
+                <p>The Diva Over Night Glow Mask | with 4% Glycolic Acid</p>
+                <span class="price">Rs 500</span>
+                <span class="mrp">M.R.P: <del>Rs 529</del> <span class="discount">(33% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f9.jpg" alt="Huda Giri">
+            <div class="desc">
+                <h1>HUDA GIRI</h1>
+                <p>Fairness Facial Mask (Aloe Vera, Cucumber, Herbs) Combo</p>
+                <span class="price">Rs 399</span>
+                <span class="mrp">M.R.P: <del>Rs 529</del> <span class="discount">(53% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f10.jpg" alt="Face Canada">
+            <div class="desc">
+                <h1>FACE CANADA</h1>
+                <p>Sirona Natural Exfoliating Face Wash - 125 ml</p>
+                <span class="price">Rs 599</span>
+                <span class="mrp">M.R.P: <del>Rs 375</del> <span class="discount">(29% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f11.jpg" alt="Mamaearth">
+            <div class="desc">
+                <h1>MAMAEARTH</h1>
+                <p>Glamveda Korean Glass Skin Rice & Ceramide 6 Step Skincare</p>
+                <span class="price">Rs 989</span>
+                <span class="mrp">M.R.P: <del>Rs 2,409</del> <span class="discount">(59% off)</span></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <img src="f12.jpg" alt="Absolute">
+            <div class="desc">
+                <h1>ABSOLUTE</h1>
+                <p>Vcare Jelly Whitening Peel Off Mask For Facials Skincare</p>
+                <span class="price">Rs 500</span>
+                <span class="mrp">M.R.P: <del>Rs 996</del> <span class="discount">(5% off)</span></span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

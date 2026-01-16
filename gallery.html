@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Papillon Beauty World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a2e;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 192, 203, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(147, 112, 219, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 60% 70%, rgba(255, 105, 180, 0.12) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            z-index: -1;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 1;
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                opacity: 0.9;
+                filter: hue-rotate(20deg);
+            }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5),
+                        0 0 0 4px rgba(255, 255, 255, 0.8);
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #667eea, #764ba2, #f093fb) border-box;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav a:hover {
+            color: #667eea;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: white;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-title h1 {
+            font-size: 52px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3),
+                         0 0 30px rgba(255, 255, 255, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .page-title p {
+            font-size: 20px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Gallery Container */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 50px 80px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 255, 0.98));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 60px;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.25);
+            transition: all 0.4s ease;
+            animation: slideUp 0.8s ease backwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+        .product-card:nth-child(9) { animation-delay: 0.9s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(102, 126, 234, 0.35);
+        }
+
+        .product-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 0;
+            align-items: center;
+        }
+
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image-container img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .product-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(240, 147, 251, 0.8));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card:hover .product-image-overlay {
+            opacity: 1;
+        }
+
+        .view-button {
+            background: white;
+            color: #667eea;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .view-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-info {
+            padding: 40px 50px;
+        }
+
+        .product-info h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .product-info p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .shop-button {
+            background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(50, 205, 50, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .shop-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(50, 205, 50, 0.5);
+            background: linear-gradient(135deg, #3AE13A 0%, #2AA52A 100%);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-content {
+                grid-template-columns: 300px 1fr;
+            }
+
+            .product-image-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .page-title h1 {
+                font-size: 36px;
+            }
+
+            .gallery-container {
+                padding: 20px;
+            }
+
+            .product-content {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image-container {
+                height: 250px;
+            }
+
+            .product-info {
+                padding: 30px 25px;
+            }
+
+            .product-info h2 {
+                font-size: 26px;
+            }
+
+            .product-info p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo">
+                <img src="logo.jpg" alt="Papillon Logo">
+            </div>
+            <div class="brand-name">Papillon Beauty World</div>
+        </div>
+        <nav class="nav">
+            <a href="papillon.html">Home</a>
+            <a href="nextpage.html">About Us</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>Product Gallery</h1>
+        <p>Discover Our Premium Beauty Collection</p>
+    </div>
+
+    <!-- Gallery Container -->
+    <div class="gallery-container">
+        <!-- Product 1: Skincare -->
+        <div class="product-card">
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="skincare.jpg" alt="Skincare">
+                    <div class="product-image-overlay">
+                        <button class="view-button">View Details</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h2>Skincare</h2>
+                    <p>Skincare is a range of practices that support skin integrity, enhance its appearance, and relieve skin conditions. Our carefully curated collection brings you the best in skin wellness.</p>
+                    <a href="skincareproductes.html" class="shop-button">Skin Care Products</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2: Primer -->
+        <div class="product-card">
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="primer.jpg" alt="Primer">
+                    <div class="product-image-overlay">
+                        <button class="view-button">View Details</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h2>Primer</h2>
+                    <p>Primer is used to smooth the skin, fill in lines and wrinkles, and create a less porous surface for your makeup. Achieve a flawless base for your beauty routine.</p>
+                    <a href="primer.html" class="shop-button">Primer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3: Foundation -->
+        <div class="product-card">
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="foundation.jpg" alt="Foundation">
+                    <div class="product-image-overlay">
+                        <button class="view-button">View Details</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h2>Foundation</h2>
+                    <p>Foundation is a liquid, cream, or powder makeup applied to the face and neck to create an even, uniform color to the complexion, cover flaws and, sometimes, to change the natural skin tone.</p>
+                    <a href="foundation.html" class="shop-button">Foundation</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4: Concealer -->
+        <div class="product-card">
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="concealer.jpg" alt="Concealer">
+                    <div class="product-image-overlay">
+                        <button class="view-button">View Details</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h2>Concealer</h2>
+                    <p>Concealer is similar to foundation except it's generally thicker and hides dark circles, age spots, blemishes and more by hiding pigments and blending these imperfections into the skin.</p>
+                    <a href="concealer.html" class="shop-button">Concealer</a>
+                </div>
+            </div>
+        </div>
+
+       
+        </div>
+    </div>
+</body>
+</html>
